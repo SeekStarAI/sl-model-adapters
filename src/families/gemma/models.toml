@@ -1,0 +1,41 @@
+schema_version = 1
+family = "gemma"
+name = "Gemma"
+vendor = "Google"
+status = "planned"
+license = "Gemma Terms of Use（非 OSI）"
+architectures = ["gemma", "gemma2", "gemma3"]
+traits = ["decoder-only", "RMSNorm", "GeGLU", "RoPE", "GQA（Gemma 2/3）", "滑动窗口（Gemma 2/3）", "多模态（Gemma 3）"]
+
+[[variants]]
+name = "Gemma 2B/7B"
+size = "2B / 7B"
+context = "8K"
+attention = "MHA"
+moe = false
+multimodal = false
+status = "blocked"
+blocker = "GeGLU"
+source = "google/gemma-7b"
+
+[[variants]]
+name = "Gemma 2 2B/9B/27B"
+size = "2B / 9B / 27B"
+context = "8K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "blocked"
+blocker = "GeGLU + sliding window"
+source = "google/gemma-2-9b-it"
+
+[[variants]]
+name = "Gemma 3 1B/4B/12B/27B"
+size = "1B–27B"
+context = "128K"
+attention = "GQA"
+moe = false
+multimodal = true
+status = "blocked"
+blocker = "GeGLU + sliding window + multimodal"
+source = "google/gemma-3-4b-it"

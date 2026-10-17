@@ -22,6 +22,18 @@ Not implemented: encoder / encoder-decoder models, bias, MoE, sliding-window or
 ALiBi attention, non-NeoX RoPE variants, paged KV, multi-device splitting and
 variable-length batching.
 
+## Family catalog
+
+`src/families/` currently contains **17 family directories**. Only `llama`
+has a Rust implementation; the other families ship `README.md` and
+`models.toml` with architecture notes, common variants and explicit blockers.
+See [families/README.md](src/families/README.md) for the index and status
+definitions (`implemented`, `structural`, `planned`, `blocked`).
+
+Adding a family starts with its catalog, not with code: document the common
+models and the blockers first, then implement the version directory once the
+required operators exist.
+
 ## Repository layout
 
 ```text
@@ -40,7 +52,8 @@ src/
 
 Only cross-family contracts live at the crate root. Family-specific tensor
 names, config fields and graph construction stay inside
-`families/<family>/<version>/`.
+`families/<family>/<version>/`; planned families only provide
+`README.md` + `models.toml` until they are implemented.
 
 To add a family:
 
@@ -192,7 +205,7 @@ cargo clippy -p sl-model-adapters --all-targets -- -D warnings
 cargo fmt --all --check
 ```
 
-`tests/families.rs` checks the family/version layout; `tests/lower.rs` builds a tiny fixture (`hidden = 8`, 2 layers, 2 query heads,
+`tests/families.rs` checks the family/version layout; `tests/catalog.rs` checks every family directory has a README and a `models.toml`; `tests/lower.rs` builds a tiny fixture (`hidden = 8`, 2 layers, 2 query heads,
 1 KV head, `head_dim = 4`, `inter = 16`, `vocab = 16`, `max_seq = 8`) and
 covers role coverage, program validation, state shape, native and decomposed
 compile paths, missing/shape/tie/quantization/opaque/error cases.

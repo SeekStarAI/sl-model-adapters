@@ -1,0 +1,30 @@
+schema_version = 1
+family = "baichuan"
+name = "Baichuan"
+vendor = "Baichuan AI"
+status = "planned"
+license = "Baichuan 模型许可（按型号核对）"
+architectures = ["baichuan", "baichuan2"]
+traits = ["decoder-only", "RMSNorm", "SwiGLU", "RoPE/ALiBi（按版本）", "GQA"]
+
+[[variants]]
+name = "Baichuan 7B/13B"
+size = "7B / 13B"
+context = "4K"
+attention = "MHA"
+moe = false
+multimodal = false
+status = "planned"
+blocker = "attention variant 待确认"
+source = "baichuan-inc/Baichuan-13B-Chat"
+
+[[variants]]
+name = "Baichuan2 7B/13B"
+size = "7B / 13B"
+context = "4K"
+attention = "MHA"
+moe = false
+multimodal = false
+status = "planned"
+blocker = "attention variant 待确认"
+source = "baichuan-inc/Baichuan2-13B-Chat"

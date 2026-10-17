@@ -1,0 +1,29 @@
+schema_version = 1
+family = "hunyuan"
+name = "Hunyuan"
+vendor = "Tencent"
+status = "planned"
+license = "Tencent Hunyuan Community License（按型号核对）"
+architectures = ["hunyuan", "hunyuan-large"]
+traits = ["decoder-only", "RMSNorm", "SwiGLU", "RoPE", "GQA", "MoE（Large）"]
+
+[[variants]]
+name = "Hunyuan 7B/13B"
+size = "7B / 13B"
+context = "32K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "planned"
+source = "tencent/Hunyuan-7B"
+
+[[variants]]
+name = "Hunyuan-Large 389B-A52B"
+size = "389B / 52B active"
+context = "256K"
+attention = "GQA"
+moe = true
+multimodal = false
+status = "blocked"
+blocker = "MoE"
+source = "tencent/Hunyuan-Large"

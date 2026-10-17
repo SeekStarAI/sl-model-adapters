@@ -1,0 +1,51 @@
+schema_version = 1
+family = "olmo"
+name = "OLMo"
+vendor = "Allen AI"
+status = "planned"
+license = "Apache-2.0"
+architectures = ["olmo", "olmo2", "olmoe"]
+traits = ["decoder-only", "RMSNorm", "SwiGLU", "RoPE", "QK-norm（OLMo 2）", "MoE（OLMoE）"]
+
+[[variants]]
+name = "OLMo 7B"
+size = "7B"
+context = "2K/4K"
+attention = "MHA"
+moe = false
+multimodal = false
+status = "planned"
+source = "allenai/OLMo-7B"
+
+[[variants]]
+name = "OLMo 2 7B/13B"
+size = "7B / 13B"
+context = "4K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "blocked"
+blocker = "QK-norm"
+source = "allenai/OLMo-2-1124-13B-Instruct"
+
+[[variants]]
+name = "OLMoE 1B-7B"
+size = "6.9B / 1.3B active"
+context = "4K"
+attention = "GQA"
+moe = true
+multimodal = false
+status = "blocked"
+blocker = "MoE + QK-norm"
+source = "allenai/OLMoE-1B-7B-0924"
+
+[[variants]]
+name = "Molmo 7B/72B"
+size = "7B / 72B"
+context = "4K"
+attention = "GQA"
+moe = false
+multimodal = true
+status = "blocked"
+blocker = "multimodal"
+source = "allenai/Molmo-7B-D-0924"

@@ -1,0 +1,48 @@
+schema_version = 1
+family = "phi"
+name = "Phi"
+vendor = "Microsoft"
+status = "planned"
+license = "MIT（多数 Phi-3/Phi-4，按型号核对）"
+architectures = ["phi", "phi3", "phi4"]
+traits = ["decoder-only", "RMSNorm/LayerNorm（按版本）", "SwiGLU", "RoPE", "GQA（部分型号）"]
+
+[[variants]]
+name = "Phi-2 2.7B"
+size = "2.7B"
+context = "2K"
+attention = "MHA"
+moe = false
+multimodal = false
+status = "planned"
+source = "microsoft/phi-2"
+
+[[variants]]
+name = "Phi-3 mini 3.8B"
+size = "3.8B"
+context = "4K/128K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "planned"
+source = "microsoft/Phi-3-mini-4k-instruct"
+
+[[variants]]
+name = "Phi-3 small 7B / medium 14B"
+size = "7B / 14B"
+context = "8K/128K"
+attention = "GQA/MHA"
+moe = false
+multimodal = false
+status = "planned"
+source = "microsoft/Phi-3-medium-4k-instruct"
+
+[[variants]]
+name = "Phi-4 14B"
+size = "14B"
+context = "16K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "planned"
+source = "microsoft/phi-4"

@@ -1,0 +1,28 @@
+schema_version = 1
+family = "command-r"
+name = "Command R"
+vendor = "Cohere"
+status = "planned"
+license = "CC-BY-NC 4.0（非商业）"
+architectures = ["command-r", "command-r-plus"]
+traits = ["decoder-only", "RMSNorm", "SwiGLU", "RoPE", "GQA"]
+
+[[variants]]
+name = "Command R 35B"
+size = "35B"
+context = "128K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "planned"
+source = "CohereForAI/c4ai-command-r-v01"
+
+[[variants]]
+name = "Command R+ 104B"
+size = "104B"
+context = "128K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "planned"
+source = "CohereForAI/c4ai-command-r-plus"

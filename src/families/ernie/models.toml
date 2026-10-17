@@ -1,0 +1,40 @@
+schema_version = 1
+family = "ernie"
+name = "ERNIE"
+vendor = "Baidu"
+status = "planned"
+license = "Apache-2.0（ERNIE 4.5 开源系列，按型号核对）"
+architectures = ["ernie4.5"]
+traits = ["decoder-only", "RMSNorm", "SwiGLU", "RoPE", "MoE（多型号）", "多模态（部分）"]
+
+[[variants]]
+name = "ERNIE 4.5 0.3B–21B dense"
+size = "0.3B–21B"
+context = "4K–128K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "planned"
+source = "ernie.baidu.com"
+
+[[variants]]
+name = "ERNIE 4.5 MoE 系列"
+size = "21B–424B"
+context = "128K"
+attention = "GQA"
+moe = true
+multimodal = false
+status = "blocked"
+blocker = "MoE"
+source = "ernie.baidu.com"
+
+[[variants]]
+name = "ERNIE 4.5 VL 系列"
+size = "—"
+context = "—"
+attention = "GQA"
+moe = true
+multimodal = true
+status = "blocked"
+blocker = "MoE + multimodal"
+source = "ernie.baidu.com"

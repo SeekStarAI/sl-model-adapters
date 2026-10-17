@@ -1,0 +1,38 @@
+schema_version = 1
+family = "internlm"
+name = "InternLM"
+vendor = "Shanghai AI Lab"
+status = "planned"
+license = "Apache-2.0（按型号核对）"
+architectures = ["internlm2", "internlm2.5", "internlm3"]
+traits = ["decoder-only", "RMSNorm", "SwiGLU", "RoPE", "GQA"]
+
+[[variants]]
+name = "InternLM2 7B/20B"
+size = "7B / 20B"
+context = "32K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "planned"
+source = "internlm/internlm2-7b"
+
+[[variants]]
+name = "InternLM2.5 7B/20B"
+size = "7B / 20B"
+context = "32K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "planned"
+source = "internlm/internlm2_5-20b-chat"
+
+[[variants]]
+name = "InternLM3 8B"
+size = "8B"
+context = "32K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "planned"
+source = "internlm/internlm3-8b-instruct"

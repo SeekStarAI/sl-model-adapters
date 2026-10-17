@@ -1,0 +1,51 @@
+schema_version = 1
+family = "minicpm"
+name = "MiniCPM"
+vendor = "OpenBMB"
+status = "planned"
+license = "Apache-2.0（按型号核对）"
+architectures = ["minicpm", "minicpm3", "minicpm4"]
+traits = ["decoder-only", "RMSNorm", "SwiGLU", "RoPE", "GQA", "scale_emb", "多模态（MiniCPM-V）"]
+
+[[variants]]
+name = "MiniCPM 2.4B"
+size = "2.4B"
+context = "4K"
+attention = "MHA"
+moe = false
+multimodal = false
+status = "planned"
+blocker = "scale_emb"
+source = "openbmb/MiniCPM-2B-sft-bf16"
+
+[[variants]]
+name = "MiniCPM3 4B"
+size = "4B"
+context = "32K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "planned"
+blocker = "scale_emb"
+source = "openbmb/MiniCPM3-4B"
+
+[[variants]]
+name = "MiniCPM4 0.5B/8B"
+size = "0.5B / 8B"
+context = "32K/128K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "planned"
+source = "openbmb/MiniCPM4-8B"
+
+[[variants]]
+name = "MiniCPM-V 2.6/4.0"
+size = "8B"
+context = "32K"
+attention = "GQA"
+moe = false
+multimodal = true
+status = "blocked"
+blocker = "multimodal"
+source = "openbmb/MiniCPM-V-2_6"

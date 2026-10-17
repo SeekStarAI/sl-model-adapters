@@ -1,0 +1,63 @@
+schema_version = 1
+family = "glm"
+name = "GLM"
+vendor = "Zhipu AI"
+status = "planned"
+license = "MIT（GLM-4 系列；按型号核对）"
+architectures = ["chatglm", "glm4", "glm4.5"]
+traits = ["decoder-only", "RMSNorm", "SwiGLU", "RoPE（部分维度）", "GQA", "MoE（4.5）"]
+
+[[variants]]
+name = "ChatGLM2/3 6B"
+size = "6B"
+context = "8K/32K"
+attention = "MHA"
+moe = false
+multimodal = false
+status = "planned"
+blocker = "partial RoPE"
+source = "THUDM/chatglm3-6b"
+
+[[variants]]
+name = "GLM-4-9B"
+size = "9B"
+context = "128K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "planned"
+blocker = "partial RoPE"
+source = "THUDM/GLM-4-9B-0414"
+
+[[variants]]
+name = "GLM-4.5 355B-A32B"
+size = "355B / 32B active"
+context = "128K"
+attention = "GQA"
+moe = true
+multimodal = false
+status = "blocked"
+blocker = "MoE + partial RoPE"
+source = "zai-org/GLM-4.5"
+
+[[variants]]
+name = "GLM-4.5-Air 106B-A12B"
+size = "106B / 12B active"
+context = "128K"
+attention = "GQA"
+moe = true
+multimodal = false
+status = "blocked"
+blocker = "MoE + partial RoPE"
+source = "zai-org/GLM-4.5-Air"
+
+[[variants]]
+name = "GLM-4.1V 9B"
+size = "9B"
+context = "64K"
+attention = "GQA"
+moe = false
+multimodal = true
+status = "blocked"
+blocker = "multimodal + partial RoPE"
+source = "THUDM/GLM-4.1V-9B-Thinking"

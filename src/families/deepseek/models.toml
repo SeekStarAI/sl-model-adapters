@@ -1,0 +1,73 @@
+schema_version = 1
+family = "deepseek"
+name = "DeepSeek"
+vendor = "DeepSeek-AI"
+status = "planned"
+license = "DeepSeek Model License（按型号核对）"
+architectures = ["deepseek-llm", "deepseek-v2", "deepseek-v3", "deepseek-r1"]
+traits = ["decoder-only", "RMSNorm", "SwiGLU", "RoPE", "MLA（V2+）", "MoE（V2+）"]
+
+[[variants]]
+name = "DeepSeek-LLM 7B/67B"
+size = "7B / 67B"
+context = "4K"
+attention = "MHA/GQA"
+moe = false
+multimodal = false
+status = "planned"
+source = "deepseek-ai/deepseek-llm-7b-chat"
+
+[[variants]]
+name = "DeepSeek-V2 236B-A21B"
+size = "236B / 21B active"
+context = "128K"
+attention = "MLA"
+moe = true
+multimodal = false
+status = "blocked"
+blocker = "MLA + MoE"
+source = "deepseek-ai/DeepSeek-V2"
+
+[[variants]]
+name = "DeepSeek-V3 671B-A37B"
+size = "671B / 37B active"
+context = "128K"
+attention = "MLA"
+moe = true
+multimodal = false
+status = "blocked"
+blocker = "MLA + MoE"
+source = "deepseek-ai/DeepSeek-V3"
+
+[[variants]]
+name = "DeepSeek-R1 671B-A37B"
+size = "671B / 37B active"
+context = "128K"
+attention = "MLA"
+moe = true
+multimodal = false
+status = "blocked"
+blocker = "MLA + MoE"
+source = "deepseek-ai/DeepSeek-R1"
+
+[[variants]]
+name = "R1-Distill-Llama 8B/70B"
+size = "8B / 70B"
+context = "8K/128K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "structural"
+blocker = "rope_scaling（70B）"
+source = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
+
+[[variants]]
+name = "R1-Distill-Qwen 1.5B/7B/14B/32B"
+size = "1.5B–32B"
+context = "32K–128K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "blocked"
+blocker = "attention bias"
+source = "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"

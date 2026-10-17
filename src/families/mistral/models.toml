@@ -1,0 +1,85 @@
+schema_version = 1
+family = "mistral"
+name = "Mistral"
+vendor = "Mistral AI"
+status = "planned"
+license = "Apache-2.0（7B/Small 3 等）或 Mistral Research License（Large 等）"
+architectures = ["mistral", "mixtral", "mistral-nemo"]
+traits = ["decoder-only", "RMSNorm", "SwiGLU", "RoPE", "GQA", "滑动窗口（Mistral 7B/Mixtral）", "MoE（Mixtral）"]
+
+[[variants]]
+name = "Mistral 7B v0.3"
+size = "7B"
+context = "32K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "blocked"
+blocker = "sliding window"
+source = "mistralai/Mistral-7B-v0.3"
+
+[[variants]]
+name = "Mixtral 8x7B"
+size = "46.7B / 12.9B active"
+context = "32K"
+attention = "GQA"
+moe = true
+multimodal = false
+status = "blocked"
+blocker = "MoE + sliding window"
+source = "mistralai/Mixtral-8x7B-v0.1"
+
+[[variants]]
+name = "Mixtral 8x22B"
+size = "141B / 39B active"
+context = "64K"
+attention = "GQA"
+moe = true
+multimodal = false
+status = "blocked"
+blocker = "MoE + sliding window"
+source = "mistralai/Mixtral-8x22B-v0.1"
+
+[[variants]]
+name = "Mistral NeMo 12B"
+size = "12B"
+context = "128K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "planned"
+blocker = "attention/SWA 待确认"
+source = "mistralai/Mistral-Nemo-Instruct-2407"
+
+[[variants]]
+name = "Mistral Small 3 24B"
+size = "24B"
+context = "32K–128K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "planned"
+blocker = "attention/SWA 待确认"
+source = "mistralai/Mistral-Small-24B-Instruct-2501"
+
+[[variants]]
+name = "Mistral Large 123B"
+size = "123B"
+context = "128K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "planned"
+blocker = "attention/SWA 待确认"
+source = "mistralai/Mistral-Large-Instruct-2411"
+
+[[variants]]
+name = "Pixtral 12B"
+size = "12B"
+context = "128K"
+attention = "GQA"
+moe = false
+multimodal = true
+status = "blocked"
+blocker = "multimodal"
+source = "mistralai/Pixtral-12B-2409"

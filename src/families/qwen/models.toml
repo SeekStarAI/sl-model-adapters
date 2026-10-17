@@ -1,0 +1,63 @@
+schema_version = 1
+family = "qwen"
+name = "Qwen"
+vendor = "Alibaba"
+status = "planned"
+license = "Apache-2.0（部分型号为 Qwen Research/自定义，按型号核对）"
+architectures = ["qwen2", "qwen3"]
+traits = ["decoder-only", "RMSNorm", "SwiGLU", "RoPE", "GQA", "Qwen2 系列带 attention bias", "Qwen3 有 MoE 型号"]
+
+[[variants]]
+name = "Qwen2.5 0.5B/1.5B/3B/7B/14B/32B/72B"
+size = "0.5B–72B"
+context = "32K–128K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "blocked"
+blocker = "attention bias"
+source = "Qwen/Qwen2.5-7B-Instruct"
+
+[[variants]]
+name = "Qwen3 0.6B/1.7B/4B/8B/14B/32B"
+size = "0.6B–32B"
+context = "32K–128K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "planned"
+blocker = "QK-norm/attention 待确认"
+source = "Qwen/Qwen3-8B"
+
+[[variants]]
+name = "Qwen3 30B-A3B"
+size = "30B / 3B active"
+context = "32K"
+attention = "GQA"
+moe = true
+multimodal = false
+status = "blocked"
+blocker = "MoE"
+source = "Qwen/Qwen3-30B-A3B"
+
+[[variants]]
+name = "Qwen3 235B-A22B"
+size = "235B / 22B active"
+context = "32K"
+attention = "GQA"
+moe = true
+multimodal = false
+status = "blocked"
+blocker = "MoE"
+source = "Qwen/Qwen3-235B-A22B"
+
+[[variants]]
+name = "Qwen2.5-VL 3B/7B/72B"
+size = "3B–72B"
+context = "128K"
+attention = "GQA"
+moe = false
+multimodal = true
+status = "blocked"
+blocker = "multimodal"
+source = "Qwen/Qwen2.5-VL-7B-Instruct"

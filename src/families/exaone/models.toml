@@ -1,0 +1,28 @@
+schema_version = 1
+family = "exaone"
+name = "EXAONE"
+vendor = "LG AI Research"
+status = "planned"
+license = "EXAONE AI Model License（非商业）"
+architectures = ["exaone3.5", "exaone4"]
+traits = ["decoder-only", "RMSNorm", "SwiGLU", "RoPE", "GQA"]
+
+[[variants]]
+name = "EXAONE 3.5 2.4B/7.8B/32B"
+size = "2.4B–32B"
+context = "32K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "planned"
+source = "LGAI-EXAONE/EXAONE-3.5-7.8B-Instruct"
+
+[[variants]]
+name = "EXAONE 4.0 32B"
+size = "32B"
+context = "128K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "planned"
+source = "LGAI-EXAONE/EXAONE-4.0-32B"

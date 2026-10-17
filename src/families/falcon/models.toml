@@ -1,0 +1,40 @@
+schema_version = 1
+family = "falcon"
+name = "Falcon"
+vendor = "TII"
+status = "planned"
+license = "Apache-2.0（Falcon 3）/ TII Falcon License（早期型号）"
+architectures = ["falcon", "falcon2", "falcon3"]
+traits = ["decoder-only", "multiquery attention", "ALiBi（Falcon 1）", "RoPE（Falcon 3）", "parallel attention"]
+
+[[variants]]
+name = "Falcon 7B/40B"
+size = "7B / 40B"
+context = "2K"
+attention = "MQA"
+moe = false
+multimodal = false
+status = "blocked"
+blocker = "ALiBi + MQA"
+source = "tiiuae/falcon-7b"
+
+[[variants]]
+name = "Falcon 2 11B"
+size = "11B"
+context = "8K"
+attention = "MQA"
+moe = false
+multimodal = false
+status = "blocked"
+blocker = "ALiBi + MQA"
+source = "tiiuae/falcon-11B"
+
+[[variants]]
+name = "Falcon 3 1B/3B/7B/10B"
+size = "1B–10B"
+context = "32K"
+attention = "GQA"
+moe = false
+multimodal = false
+status = "planned"
+source = "tiiuae/Falcon3-10B-Instruct"
