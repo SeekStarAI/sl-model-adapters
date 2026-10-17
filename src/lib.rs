@@ -3,22 +3,33 @@
 
 //! Model-family lowering from [`sl_model::ModelBundle`] to [`sl_ir::Program`].
 //!
-//! The first implemented family is `llama`, variant `dense`: decoder-only,
-//! bias-free dense transformer blocks with RMSNorm, NeoX RoPE, causal attention
-//! (GQA allowed) and SwiGLU. Lowering produces a symbolic prefill program and a
-//! fixed-length decode program that share one weight table and one KV-cache
-//! layout. See `docs/ARCH-0006` for the contract.
+//! Layout:
+//!
+//! ```text
+//! src/
+//! ├── error.rs          # LoweringError (shared)
+//! ├── model.rs          # LoweredModel / WeightSpec / ... (shared)
+//! └── families/
+//!     └── llama/
+//!         ├── mod.rs    # family metadata, version dispatch
+//!         └── v1/       # config schema v1 + lowering
+//!             ├── config.rs
+//!             └── lower.rs
+//! ```
+//!
+//! Only cross-family contracts live at the crate root. Family rules, tensor
+//! names, configuration fields and lowering stay inside the family directory so
+//! that adding a family is additive. See `docs/ARCH-0006` for the contract.
 
 #![deny(unsafe_code)]
 
-pub mod config;
 pub mod error;
-pub mod llama;
+pub mod families;
 pub mod model;
 
-pub use config::{LlamaConfig, CONFIG_VERSION};
 pub use error::LoweringError;
-pub use llama::{lower, FAMILY, VARIANT};
+pub use families::llama::v1::{LlamaConfig, CONFIG_VERSION};
+pub use families::llama::{lower, FAMILY, VARIANT};
 pub use model::{
     ArchitectureId, KvCacheSpec, LoweredModel, LoweredProgram, ParamRef, ProgramIo, WeightSpec,
 };

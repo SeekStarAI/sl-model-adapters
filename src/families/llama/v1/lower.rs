@@ -19,18 +19,14 @@ use sl_model::{
     TensorData, TensorEncoding as ModelTensorEncoding,
 };
 
-use crate::config::{LlamaConfig, CONFIG_VERSION};
 use crate::error::LoweringError;
+use crate::families::llama::{ARCHITECTURES, FAMILY, VARIANT};
 use crate::model::{
     ArchitectureId, KvCacheSpec, LoweredModel, LoweredProgram, ParamRef, ProgramIo, WeightSpec,
 };
 
-/// Family name recorded on [`ArchitectureId`].
-pub const FAMILY: &str = "llama";
-/// Variant name recorded on [`ArchitectureId`].
-pub const VARIANT: &str = "dense";
+use super::config::{LlamaConfig, CONFIG_VERSION};
 
-const ARCHITECTURES: [&str; 2] = ["llama", "tiny-llama"];
 const EMBED_TENSOR: &str = "model.embed_tokens.weight";
 const FINAL_NORM_TENSOR: &str = "model.norm.weight";
 const LM_HEAD_TENSOR: &str = "lm_head.weight";

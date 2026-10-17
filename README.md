@@ -22,6 +22,39 @@ Not implemented: encoder / encoder-decoder models, bias, MoE, sliding-window or
 ALiBi attention, non-NeoX RoPE variants, paged KV, multi-device splitting and
 variable-length batching.
 
+## Repository layout
+
+```text
+src/
+├── error.rs              # LoweringError (shared across families)
+├── model.rs              # LoweredModel / WeightSpec / ProgramIo (shared)
+└── families/
+    ├── mod.rs            # family registry
+    └── llama/
+        ├── mod.rs        # family metadata + version dispatch
+        └── v1/           # config schema v1 + lowering
+            ├── mod.rs
+            ├── config.rs
+            └── lower.rs
+```
+
+Only cross-family contracts live at the crate root. Family-specific tensor
+names, config fields and graph construction stay inside
+`families/<family>/<version>/`.
+
+To add a family:
+
+1. create `src/families/<family>/mod.rs` with `FAMILY`, `VARIANT` and the
+   accepted architecture strings;
+2. add `<family>/v1/config.rs` and `<family>/v1/lower.rs` for the first schema
+   version;
+3. register the family in `src/families/mod.rs`;
+4. re-export its `lower` from the family module, and keep the shared
+   `LoweredModel` types untouched.
+
+To add a new version of an existing family, add a sibling `v2/` directory and
+dispatch to it from the family module; older versions stay untouched.
+
 ## Entry point
 
 ```rust
@@ -159,7 +192,7 @@ cargo clippy -p sl-model-adapters --all-targets -- -D warnings
 cargo fmt --all --check
 ```
 
-`tests/lower.rs` builds a tiny fixture (`hidden = 8`, 2 layers, 2 query heads,
+`tests/families.rs` checks the family/version layout; `tests/lower.rs` builds a tiny fixture (`hidden = 8`, 2 layers, 2 query heads,
 1 KV head, `head_dim = 4`, `inter = 16`, `vocab = 16`, `max_seq = 8`) and
 covers role coverage, program validation, state shape, native and decomposed
 compile paths, missing/shape/tie/quantization/opaque/error cases.
